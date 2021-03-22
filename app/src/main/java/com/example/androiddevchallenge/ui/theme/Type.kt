@@ -16,15 +16,36 @@
 package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.material.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.androiddevchallenge.R
 
 // Set of Material typography styles to start with
+public val Montserrat = FontFamily(
+    Font(R.font.montserrat_light, FontWeight.Light),
+    Font(R.font.montserrat_regular, FontWeight.Normal),
+    Font(R.font.montserrat_medium, FontWeight.Medium),
+    Font(R.font.montserrat_semibold, FontWeight.SemiBold)
+)
+public val myStyle = TextStyle(
+    fontFamily = Montserrat,
+    fontSize = 19.sp,
+    fontWeight = FontWeight.SemiBold,
+    color = Color.White
+)
+public val myStyleBlackColor = TextStyle(
+    fontFamily = Montserrat,
+    fontSize = 19.sp,
+    fontWeight = FontWeight.SemiBold,
+    color = blackish
+)
 val typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = Montserrat,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )

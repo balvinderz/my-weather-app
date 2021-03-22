@@ -10,4 +10,26 @@
       the License.
       -->
     <string name="app_name">AndroidDevChallenge</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="wind">Wind</string>
+    <string name="sunset">Sunset</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="next_7_days">Next 7 days</string>
+    <string name="thermometer">Thermometer</string>
+    <string name="sun">Sun</string>
+    <string name="night">NIGHT</string>
+    <string name="day">DAY</string>
+    <string name="sunny_with_periodic_clouds">Sunny with periodic clouds</string>
+    <string name="humidity">Humidity</string>
+    <string name="details">Details</string>
+    <string name="extreme">Extreme</string>
+    <string name="uv_index">UV index</string>
+    <string name="celsius">Celsius</string>
+    <string name="clouds">clouds</string>
+    <string name="sunny_with_periodic">Sunny with periodic</string>
+    <string name="today">Today</string>
+    <string name="farhenheit">farhenheit</string>
+    <string name ="read_temperature">Temperature is %d°%s at %s</string>
+    <string name="read_temperature_on_day">At %s %s temperature will be %s %s</string>
+    <string name="read_temperature_on_date" translatable="false">on %s Day temperature will be %s %s, Night temperature will be %s %s</string>
 </resources>
