@@ -12,6 +12,8 @@ This beautiful app is made for the android dev week 4 challenge. This app has 6 
 <!--- What are you especially proud of? -->
 My App supports 6 dynamics that are shown according to time .
 And my app is accessible friendly.
+For accessibility you can check the video here<br/>
+https://github.com/balvinderz/my-weather-app/blob/main/results/accessibility_video.mp4
 
 
 ## :camera_flash: Screenshots
