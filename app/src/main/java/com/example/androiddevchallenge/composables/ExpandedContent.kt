@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge.composables
 
-import TemperatureWithTime
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
