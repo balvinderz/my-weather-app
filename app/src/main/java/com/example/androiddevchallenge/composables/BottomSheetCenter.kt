@@ -48,13 +48,15 @@ import com.example.androiddevchallenge.ui.theme.blackish
 import com.example.androiddevchallenge.ui.theme.myStyle
 
 @Composable
-fun BottomSheetCenter(theme: TimeBasedTheme, temperatureType: TemperatureType,modifier: Modifier = Modifier) {
-    val temperatureTypeContentDescription = if(temperatureType == TemperatureType.Fahrenheit) stringResource(id = R.string.farhenheit) else stringResource(
+fun BottomSheetCenter(theme: TimeBasedTheme, temperatureType: TemperatureType, modifier: Modifier = Modifier) {
+    val temperatureTypeContentDescription = if (temperatureType == TemperatureType.Fahrenheit) stringResource(id = R.string.farhenheit) else stringResource(
         id = R.string.celsius
     )
     val convertToFahrenheit = temperatureType == TemperatureType.Fahrenheit
-    val contentDescriptionForCenterElement : String = stringResource(id = R.string.read_temperature,37.convertToFahrenheit(convertToFahrenheit),temperatureTypeContentDescription,
-        getCurrentTime())
+    val contentDescriptionForCenterElement: String = stringResource(
+        id = R.string.read_temperature, 37.convertToFahrenheit(convertToFahrenheit), temperatureTypeContentDescription,
+        getCurrentTime()
+    )
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -114,11 +116,14 @@ fun BottomSheetCenter(theme: TimeBasedTheme, temperatureType: TemperatureType,mo
                     )
                 }
 
-                Column(modifier = Modifier
-                    .padding(top = 5.dp)
-                    .height(26.dp)
-                    .fillMaxWidth()
-                    .background(color = theme.fabColor), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                        .height(26.dp)
+                        .fillMaxWidth()
+                        .background(color = theme.fabColor),
+                    verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
                         getCurrentTime(),
                         style = myStyle.copy(

@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,7 +51,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +58,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.composables.BottomSheet
-import com.example.androiddevchallenge.ui.theme.*
+import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.theme.TimeBasedTheme
+import com.example.androiddevchallenge.ui.theme.blackish
+import com.example.androiddevchallenge.ui.theme.myStyle
 
 class MainActivity : AppCompatActivity() {
 
@@ -113,14 +114,17 @@ fun MyApp() {
                         .padding(top = 50.dp, end = 20.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    TextButton(onClick = {
-                        if (temperatureType.value == TemperatureType.Fahrenheit)
-                            temperatureType.value = TemperatureType.Celsius
-                        else
-                            temperatureType.value = TemperatureType.Fahrenheit
-                    },modifier = Modifier.semantics {
-                        contentDescription = if(!convertToFahrenheit)"Celsius to Fahrenheit" else "Fahrenheit to Celsius"
-                    }.testTag(tag = "changeTemperatureButton")) {
+                    TextButton(
+                        onClick = {
+                            if (temperatureType.value == TemperatureType.Fahrenheit)
+                                temperatureType.value = TemperatureType.Celsius
+                            else
+                                temperatureType.value = TemperatureType.Fahrenheit
+                        },
+                        modifier = Modifier.semantics {
+                            contentDescription = if (!convertToFahrenheit)"Celsius to Fahrenheit" else "Fahrenheit to Celsius"
+                        }.testTag(tag = "changeTemperatureButton")
+                    ) {
                         Text(
                             "C°",
                             style = myStyle.copy(
@@ -153,7 +157,6 @@ fun MyApp() {
                                 )
                         )
                     }
-
                 }
 
             Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
@@ -193,9 +196,8 @@ fun MyApp() {
                         theme = theme,
                         onClick = {
                             expanded.value = !expanded.value
-                        })
-
-
+                        }
+                    )
                 }
             }
             if (!expanded.value)
@@ -206,7 +208,7 @@ fun MyApp() {
                             .padding(20.dp)
                     ) {
                         Text(
-                                "${stringResource(id = R.string.today)}, ${getTodaysDate()}",
+                            "${stringResource(id = R.string.today)}, ${getTodaysDate()}",
                             color = theme.textColor,
                             style = myStyle,
                             modifier = Modifier.padding(top = 76.dp)
@@ -219,7 +221,7 @@ fun MyApp() {
                                 fontSize = 17.sp,
                                 color = theme.textColor,
 
-                                )
+                            )
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Row(horizontalArrangement = Arrangement.SpaceBetween) {
@@ -239,11 +241,10 @@ fun MyApp() {
                                         fontSize = 17.sp,
                                         color = theme.textColor,
 
-                                        ),
+                                    ),
                                     modifier = Modifier.semantics {
                                         contentDescription =
                                             "$dayText$temperatureTypeContentDescription"
-
                                     }
                                 )
                                 Text(
@@ -253,7 +254,8 @@ fun MyApp() {
                                         fontSize = 17.sp,
                                         color = theme.textColor,
 
-                                        ), modifier = Modifier.semantics {
+                                    ),
+                                    modifier = Modifier.semantics {
                                         contentDescription =
                                             "$nightText$temperatureTypeContentDescription"
                                     }
@@ -269,7 +271,7 @@ fun MyApp() {
                                         .semantics(mergeDescendants = true) {
                                             contentDescription =
                                                 "${27.convertToFahrenheit(convertToFahrenheit)}°$temperatureTypeContentDescription"
-                                                                            }.testTag(tag ="currentTemperature"),
+                                        }.testTag(tag = "currentTemperature"),
                                     horizontalArrangement = Arrangement.End,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
@@ -285,7 +287,8 @@ fun MyApp() {
                                             fontWeight = FontWeight.Bold,
                                             color = theme.textColor,
 
-                                            ),modifier = Modifier.testTag(tag = "currentTemperature")
+                                        ),
+                                        modifier = Modifier.testTag(tag = "currentTemperature")
                                     )
                                     Text(
                                         "°",
@@ -294,7 +297,7 @@ fun MyApp() {
                                             fontSize = 29.sp,
                                             color = theme.textColor,
 
-                                            )
+                                        )
                                     )
                                     Text(
                                         if (temperatureType.value == TemperatureType.Celsius) "C" else "F",
@@ -303,8 +306,8 @@ fun MyApp() {
                                             fontSize = 36.sp,
                                             color = theme.textColor,
 
-                                            ),
-                                        )
+                                        ),
+                                    )
                                 }
                                 Text(
                                     stringResource(id = R.string.sunny_with_periodic) + " \n" + stringResource(
@@ -315,14 +318,13 @@ fun MyApp() {
                                         fontSize = 15.sp,
                                         color = theme.textColor,
 
-                                        ),
+                                    ),
                                     textAlign = TextAlign.Center,
                                 )
                             }
                         }
                     }
                 }
-
         }
     }
 }

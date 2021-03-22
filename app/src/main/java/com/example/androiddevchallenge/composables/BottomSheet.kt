@@ -19,9 +19,20 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
@@ -39,9 +50,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.androiddevchallenge.*
+import com.example.androiddevchallenge.ExpandedSheetState
 import com.example.androiddevchallenge.R
-import com.example.androiddevchallenge.ui.theme.*
+import com.example.androiddevchallenge.TemperatureType
+import com.example.androiddevchallenge.generateRandomTime
+import com.example.androiddevchallenge.getTheme
+import com.example.androiddevchallenge.ui.theme.TimeBasedTheme
+import com.example.androiddevchallenge.ui.theme.borderColor
+import com.example.androiddevchallenge.ui.theme.myStyleBlackColor
 
 @ExperimentalAnimationApi
 @Composable
@@ -53,9 +69,9 @@ fun BottomSheet(
     modifier: Modifier = Modifier
 ) {
     val sunriseTime = remember { mutableStateOf(generateRandomTime(5, 7)) }
-    val windTime = remember { mutableStateOf(generateRandomTime(8,10)) }
-    val sunsetTime = remember { mutableStateOf(generateRandomTime(18,20)) }
-    val expandedSheetState  = remember {
+    val windTime = remember { mutableStateOf(generateRandomTime(8, 10)) }
+    val sunsetTime = remember { mutableStateOf(generateRandomTime(18, 20)) }
+    val expandedSheetState = remember {
         mutableStateOf(ExpandedSheetState.Today)
     }
     var height = 350
@@ -90,24 +106,27 @@ fun BottomSheet(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Text(
-                        stringResource(id = if(expandedSheetState.value == ExpandedSheetState.Tomorrow) R.string.today else R.string.tomorrow), style = myStyleBlackColor.copy(
+                        stringResource(id = if (expandedSheetState.value == ExpandedSheetState.Tomorrow) R.string.today else R.string.tomorrow),
+                        style = myStyleBlackColor.copy(
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Medium,
 
                         ),
                         modifier = Modifier.clickable {
-                            if(expandedSheetState.value!= ExpandedSheetState.Tomorrow)
-                            expandedSheetState.value = ExpandedSheetState.Tomorrow
+                            if (expandedSheetState.value != ExpandedSheetState.Tomorrow)
+                                expandedSheetState.value = ExpandedSheetState.Tomorrow
                             else
                                 expandedSheetState.value = ExpandedSheetState.Today
                         }
                     )
                     Text(
-                        stringResource(id = if(expandedSheetState.value == ExpandedSheetState.Next7Days) R.string.today else R.string.next_7_days), style = myStyleBlackColor.copy(
+                        stringResource(id = if (expandedSheetState.value == ExpandedSheetState.Next7Days) R.string.today else R.string.next_7_days),
+                        style = myStyleBlackColor.copy(
                             fontSize = 17.sp,
                             fontWeight = FontWeight.Medium
-                        ),modifier = Modifier.clickable {
-                            if(expandedSheetState.value!= ExpandedSheetState.Next7Days)
+                        ),
+                        modifier = Modifier.clickable {
+                            if (expandedSheetState.value != ExpandedSheetState.Next7Days)
                                 expandedSheetState.value = ExpandedSheetState.Next7Days
                             else
                                 expandedSheetState.value = ExpandedSheetState.Today
@@ -117,12 +136,13 @@ fun BottomSheet(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .animateContentSize(), verticalArrangement = Arrangement.Bottom
+                    .animateContentSize(),
+                verticalArrangement = Arrangement.Bottom
             ) {
                 if (expanded)
-                    ExpandedContent(convertToFahrenheit, sunriseTime.value , sunsetTime.value , windTime.value ,expandedSheetState.value)
+                    ExpandedContent(convertToFahrenheit, sunriseTime.value, sunsetTime.value, windTime.value, expandedSheetState.value)
                 else
-                    UnExpandedContent(sunriseTime.value , sunsetTime.value , windTime.value )
+                    UnExpandedContent(sunriseTime.value, sunsetTime.value, windTime.value)
             }
 
             androidx.compose.animation.AnimatedVisibility(visible = !expanded) {
@@ -145,7 +165,7 @@ fun BottomSheet(
                         .size(36.dp)
                         .semantics() {
                             contentDescription = floatingButtonContentDescription
-                        }.testTag(tag =testTag)
+                        }.testTag(tag = testTag)
                 ) {
                     Icon(
                         if (expanded) Icons.Filled.ArrowDownward else Icons.Filled.ArrowUpward,
@@ -154,7 +174,6 @@ fun BottomSheet(
                     )
                 }
             }
-
         }
     }
 }
@@ -169,7 +188,7 @@ fun BottomSheetPreview() {
             temperatureType = TemperatureType.Celsius,
             theme = getTheme(),
             onClick = {
-
-            })
+            }
+        )
     }
 }

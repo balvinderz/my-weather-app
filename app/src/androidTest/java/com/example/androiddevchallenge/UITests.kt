@@ -16,12 +16,15 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
+import java.util.Locale
 
 class UITests {
     @get:Rule
@@ -37,16 +40,16 @@ class UITests {
                 MyApp()
             }
         }
-        composeTestRule.onNodeWithTag(testTag= "OpenBottomSheetFloatingButton").assertExists()
+        composeTestRule.onNodeWithTag(testTag = "OpenBottomSheetFloatingButton").assertExists()
         composeTestRule.onNodeWithTag(testTag = "CloseBottomSheetFloatingButton")
             .assertDoesNotExist()
-        composeTestRule.onNodeWithTag(testTag= "OpenBottomSheetFloatingButton").performClick()
-        composeTestRule.onNodeWithTag(testTag= "OpenBottomSheetFloatingButton")
+        composeTestRule.onNodeWithTag(testTag = "OpenBottomSheetFloatingButton").performClick()
+        composeTestRule.onNodeWithTag(testTag = "OpenBottomSheetFloatingButton")
             .assertDoesNotExist()
         composeTestRule.onNodeWithTag(testTag = "CloseBottomSheetFloatingButton").assertExists()
         composeTestRule.onNodeWithTag(testTag = "CloseBottomSheetFloatingButton").performClick()
-        composeTestRule.onNodeWithTag(testTag= "OpenBottomSheetFloatingButton").assertExists()
-        composeTestRule.onNodeWithTag(testTag= "CloseBottomSheetFloatingButton")
+        composeTestRule.onNodeWithTag(testTag = "OpenBottomSheetFloatingButton").assertExists()
+        composeTestRule.onNodeWithTag(testTag = "CloseBottomSheetFloatingButton")
             .assertDoesNotExist()
     }
 
@@ -71,7 +74,7 @@ class UITests {
     }
     @ExperimentalAnimationApi
     @Test
-    fun clickingOnNext7DaysMakesThe7DaysTabAppearTest(){
+    fun clickingOnNext7DaysMakesThe7DaysTabAppearTest() {
         Locale.setDefault(Locale("en", "EN"))
 
         composeTestRule.setContent {
@@ -85,6 +88,5 @@ class UITests {
         composeTestRule.onNodeWithContentDescription(label = "Open Bottom Sheet").performClick()
         composeTestRule.onNodeWithTag("Next7DaysTextButton").performClick()
         composeTestRule.onNodeWithTag("next7Days").assertExists()
-
     }
-    }
+}
